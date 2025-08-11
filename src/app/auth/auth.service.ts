@@ -19,4 +19,13 @@ export class AuthService
   {
     return this.http.post(`${this.apiUrl}/register`, credentials);
   }
+
+  getHomeMenu()
+  {
+    const token = localStorage.getItem('token');
+    return this.http.get(`${this.apiUrl}/home`, 
+      {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+  }
 }
