@@ -1,4 +1,11 @@
 <h2>{{ welcomeMessage }}</h2>
-<ul>
-    <li *ngFor="let item of menuItems">{{ item }}</li>
-</ul>
+<div class="container mt-5">
+    <h2>Create Group</h2>
+    <form (submit)="createGroup($event)">
+        <input type="text" placeholder="Group name" [(ngModel)]="groupName" name="groupName" required />
+        <input type="text" placeholder="Member IDs (comma separated)" [(ngModel)]="memberIds" name="memberIds" />
+
+        <button type="submit">Create Group</button>
+    </form>
+    <p *ngIf="message">{{ message }}</p>
+</div>
