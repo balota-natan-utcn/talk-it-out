@@ -35,6 +35,7 @@ export class AuthGuard implements CanActivate
       if (decoded.exp && decoded.exp < now)
       {
         //token expired - clear and redirect
+        console.log('Sesiunea de conectare a expirat.')
         localStorage.removeItem('token');
         this.router.navigate(['/login']);
         return false;
