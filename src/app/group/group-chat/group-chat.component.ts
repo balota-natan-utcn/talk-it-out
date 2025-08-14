@@ -27,7 +27,7 @@ export class GroupChatComponent implements OnInit
 
   loadMessages()
   {
-    this.http.get(`/api/messages/${this.groupId}`,
+    this.http.get(`http://localhost:5000/api/messages/${this.groupId}`,
     {
       headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
     }).subscribe(
@@ -41,7 +41,7 @@ export class GroupChatComponent implements OnInit
   {
     if (!this.newMessage.trim()) return;
 
-    this.http.post(`/api/messages/${this.groupId}`, { text: this.newMessage },
+    this.http.post(`http://localhost:5000/api/messages/${this.groupId}`, { text: this.newMessage },
     {headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
   }).subscribe(
   {
