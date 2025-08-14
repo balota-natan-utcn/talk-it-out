@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { Router } from '@angular/router';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-settings-page',
@@ -10,14 +11,37 @@ import { Router } from '@angular/router';
 })
 export class SettingsPageComponent
 {
-  constructor(private router: Router) {}
+  constructor(private router: Router, private http: HttpClient) {}
 
   logout()
   {
-    //remove JWT from local storage
-    localStorage.removeItem('token');
+    if (confirm('Are you sure you want to log out?'))
+    {
+      const token = localStorage.getItem('token');
+      if(!token)
+        {
+          this.router.navigate(['/login']);
+          return;
+        }
 
-    //go back to login page
-    this.router.navigate(['/login']);
+      this.http.post(
+        'http://localhost:3000/api/auth/logout',
+        {},
+      { headers: { Authorization: `Bearer ${token}` } }
+    ).subscribe(
+      {
+        next: () =>
+        {
+          localStorage.removeItem('token');
+          this.router.navigate(['/login']);
+        },
+        error: () =>
+        {
+          //still remove token if backend fails, so user is logged out
+          localStorage.removeItem('token');
+          this.router.navigate(['/login']);
+        }
+      });
+    }
   }
 }
