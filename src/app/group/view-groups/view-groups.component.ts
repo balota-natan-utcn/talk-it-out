@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { GroupService } from '../group.service';
 
 @Component({
   selector: 'app-view-groups',
@@ -7,6 +8,7 @@ import { RouterModule } from '@angular/router';
   templateUrl: './view-groups.component.html',
   styleUrl: './view-groups.component.css'
 })
-export class ViewGroupsComponent {
-
+export class ViewGroupsComponent
+{
+  constructor(private groupService: GroupService) {}
 }
