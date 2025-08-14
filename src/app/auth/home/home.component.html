@@ -1,14 +1,31 @@
-<h2>{{ welcomeMessage }}</h2>
-<div class="container mt-5" id="create group section">
-    <h2>Create Group</h2>
-    <form (submit)="createGroup($event)">
-        <input type="text" placeholder="Group name" [(ngModel)]="groupName" name="groupName" required />
-        <input type="text" placeholder="Member usernames (comma separated)" [(ngModel)]="memberIds" name="memberIds" />
+<div class="home-container">
+  <header class="header">
+    <h2 class="welcome-message">{{ welcomeMessage }}</h2>
+  </header>
 
-        <button type="submit">Create Group</button>
-    </form>
-    <p *ngIf="message">{{ message }}</p>
-</div>
-<div class="container mt-5">
-    <h2>View Groups</h2>
+  <nav class="navigation">
+    <button routerLink="/groups/create" class="nav-button create-group">
+      <i class="material-icons">group_add</i>
+      <span>Create Group</span>
+    </button>
+
+    <button routerLink="/groups/view" class="nav-button create-group">
+      <i class="material-icons">group</i>
+      <span>View Groups</span>
+    </button>
+    
+    <button routerLink="/friends" class="nav-button friends">
+      <i class="material-icons">people</i>
+      <span>Friends</span>
+    </button>
+    
+    <button routerLink="/settings" class="nav-button settings">
+      <i class="material-icons">settings</i>
+      <span>Settings</span>
+    </button>
+  </nav>
+
+  <main class="content">
+    <router-outlet></router-outlet>
+  </main>
 </div>

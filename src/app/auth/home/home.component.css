@@ -1,0 +1,84 @@
+/* home.component.css */
+.home-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f5f5f5;
+}
+
+.header {
+  background-color: #3f51b5;
+  color: white;
+  padding: 1.5rem;
+  text-align: center;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.welcome-message {
+  margin: 0;
+  font-weight: 300;
+  font-size: 1.8rem;
+}
+
+.navigation {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  padding: 1.5rem;
+  background-color: white;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.nav-button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: 50px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: white;
+}
+
+.nav-button.create-group {
+  background-color: #4caf50;
+}
+
+.nav-button.friends {
+  background-color: #2196f3;
+}
+
+.nav-button.settings {
+  background-color: #ff9800;
+}
+
+.nav-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.content {
+  flex: 1;
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .navigation {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .nav-button {
+    width: 80%;
+    justify-content: center;
+  }
+}

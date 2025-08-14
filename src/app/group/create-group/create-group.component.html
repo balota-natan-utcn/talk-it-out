@@ -1,0 +1,12 @@
+<div class="container mt-5" id="create group section">
+    <h2>Create Group</h2>
+    <form (submit)="createGroup($event)">
+        <input type="text" placeholder="Group name" [(ngModel)]="groupName" name="groupName" required />
+        <input type="text" placeholder="Member usernames (comma separated)" [(ngModel)]="memberIds" name="memberIds" />
+
+        <button type="submit">Create Group</button>
+    </form>
+    <p *ngIf="message">{{ message }}</p>
+
+    <button routerLink="/home" class="btn btn-primary">Go Back</button>
+</div>
