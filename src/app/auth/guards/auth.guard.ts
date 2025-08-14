@@ -1,6 +1,12 @@
-import { CanActivateFn } from '@angular/router';
+//import { CanActivateFn } from '@angular/router';
 import { Injectable } from '@angular/core';
 import { CanActivate, Router } from '@angular/router';
+import { jwtDecode } from 'jwt-decode';
+
+interface JwtPayload
+{
+  exp: number; //expiration time (seconds since epoch)
+}
 
 @Injectable(
 {
@@ -14,15 +20,37 @@ export class AuthGuard implements CanActivate
   canActivate(): boolean 
   {
     const token = localStorage.getItem('token');
+
     if (!token)
     {
       this.router.navigate(['/login']);
       return false;
     }
-    return true;
+
+    try
+    {
+      const decoded = jwtDecode<JwtPayload>(token);
+      const now = Math.floor(Date.now() / 1000);
+
+      if (decoded.exp && decoded.exp < now)
+      {
+        //token expired - clear and redirect
+        localStorage.removeItem('token');
+        this.router.navigate(['/login']);
+        return false;
+      }
+
+      return true;
+    } catch (err)
+    {
+      //token invalid - clear and redirect
+      localStorage.removeItem('token');
+      this.router.navigate(['/login']);
+      return false;
+    } 
   }
 }
 
-export const authGuard: CanActivateFn = (route, state) => {
-  return true;
-};
+//export const authGuard: CanActivateFn = (route, state) => {
+//  return true;
+//};
