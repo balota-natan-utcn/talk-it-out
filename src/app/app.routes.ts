@@ -7,6 +7,8 @@ import { CreateGroupComponent } from './group/create-group/create-group.componen
 import { SettingsPageComponent } from './settings/settings-page/settings-page.component';
 import { FriendsListComponent } from './friends/friends-list/friends-list.component';
 import { ViewGroupsComponent } from './group/view-groups/view-groups.component';
+import { GroupChatComponent } from './group/group-chat/group-chat.component';
+import { GroupSettingsComponent } from './group/group-settings/group-settings.component';
 
 export const routes: Routes = 
 [
@@ -16,6 +18,8 @@ export const routes: Routes =
     { path: 'home', component: HomeComponent },
     { path: 'groups/create', component: CreateGroupComponent, canActivate: [AuthGuard] },
     { path: 'groups/view', component: ViewGroupsComponent },
+    { path: 'groups/:id/chat', component: GroupChatComponent },
+    { path: 'groups/:id/settings', component: GroupSettingsComponent },
     { path: 'settings', component: SettingsPageComponent, canActivate: [AuthGuard] },
     { path: 'friends', component: FriendsListComponent }
 ];
