@@ -25,7 +25,7 @@ export class SettingsPageComponent
         }
 
       this.http.post(
-        'http://localhost:3000/api/auth/logout',
+        'http://localhost:5000/api/auth/logout',
         {},
       { headers: { Authorization: `Bearer ${token}` } }
     ).subscribe(
